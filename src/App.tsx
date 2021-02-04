@@ -1,25 +1,14 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {SafeAreaView, StyleSheet, View, Text, StatusBar} from 'react-native';
-
-declare const global: {HermesInternal: null | {}};
+import {NavigationContainer} from '@react-navigation/native';
+import MainNavigation from '@navigation';
 
 const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.wrapper}>
-        <View>
-          <Text>In app</Text>
-        </View>
-      </SafeAreaView>
-    </>
+    <NavigationContainer>
+      <MainNavigation />
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-});
 
 export default App;

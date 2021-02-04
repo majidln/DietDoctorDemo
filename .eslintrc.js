@@ -17,7 +17,6 @@ module.exports = {
         "@atomic-components": "./src/components/atomic",
         "@common-components": "./src/components/common",
         "@screen-components": "./src/components/screen",
-        
       }
     }
   }
