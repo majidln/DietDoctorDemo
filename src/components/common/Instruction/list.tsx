@@ -7,7 +7,7 @@ export interface Props {
   instructions: Array<Instruction>;
 }
 
-const Instruction: React.FC<Props> = ({instructions}) => {
+const InstructionList: React.FC<Props> = ({instructions}) => {
   if (!(instructions && instructions.length > 0)) {
     return null;
   }
@@ -21,4 +21,4 @@ const Instruction: React.FC<Props> = ({instructions}) => {
   );
 };
 
-export default Instruction;
+export default InstructionList;

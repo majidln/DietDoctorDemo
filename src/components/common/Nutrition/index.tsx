@@ -8,7 +8,7 @@ export interface Props {
   nutrition: Nutrition;
 }
 
-const Nutrition: React.FC<Props> = ({nutrition}) => {
+const NutritionList: React.FC<Props> = ({nutrition}) => {
   return (
     <View style={styles.wrapper}>
       <Text style={styles.title}>Nutrition</Text>
@@ -40,7 +40,7 @@ const Nutrition: React.FC<Props> = ({nutrition}) => {
   );
 };
 
-export default Nutrition;
+export default NutritionList;
 
 const styles = StyleSheet.create({
   wrapper: {},
