@@ -10,16 +10,18 @@ import {
 } from 'react-native';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
+import InstructionList from '@common-components/Instruction/list';
 
 import {IMAGE_URL} from '@services/constants';
 
-const {height, width} = Dimensions.get('window');
+const {height} = Dimensions.get('window');
 const IMAGE_HEIGHT = (2 * height) / 3;
 
 export interface Props {}
 
 const Detail: React.FC<Props> = ({route}: any) => {
   const {recipe} = route.params;
+  console.log('re', recipe);
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
   const renderImage = () => {
@@ -78,7 +80,11 @@ const Detail: React.FC<Props> = ({route}: any) => {
             </Text>
           </View>
           <Text style={styles.description}>{recipe.description}</Text>
-          <TagList tags={recipe.tags} color="#000" />
+          <TagList style={styles.tags} tags={recipe.tags} color="#000" />
+          {recipe.instructionSections &&
+          recipe.instructionSections.length > 0 ? (
+            <InstructionList instructions={recipe.instructionSections[0]} />
+          ) : null}
         </View>
       </Animated.ScrollView>
     </View>
@@ -92,7 +98,7 @@ Detail.navigationOptions = ({route}) => ({
 export default Detail;
 
 const styles = StyleSheet.create({
-  wrapper: {flex: 1, backgroundColor: 'transparent'},
+  wrapper: {flex: 1, backgroundColor: '#fff'},
   scrollWrapper: {
     flex: 1,
   },
@@ -130,4 +136,7 @@ const styles = StyleSheet.create({
     paddingLeft: 4,
   },
   description: {},
+  tags: {
+    marginVertical: 10,
+  },
 });

@@ -6,9 +6,10 @@ export interface Props {
   recipe: any;
 }
 
-const TagList: React.FC<Props> = ({tags, color = '#00ff00'}: any) => {
+const TagList: React.FC<Props> = ({tags, color = '#00ff00', ...rest}: any) => {
   return (
     <FlatList
+      {...rest}
       data={tags}
       keyExtractor={(item) => item.id}
       renderItem={({item}) => <TagItem color={color} tag={item} />}
