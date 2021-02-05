@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image} from 'react-native';
+import {IMAGE_URL} from '@services/constants';
 
 export interface Props {}
 
@@ -11,7 +12,7 @@ const Detail: React.FC<Props> = ({route}: any) => {
       <Image
         style={styles.image}
         source={{
-          uri: 'https://i.dietdoctor.com/' + recipe.images.hz,
+          uri: IMAGE_URL + recipe.images.hz,
         }}
         resizeMode={'cover'}
       />

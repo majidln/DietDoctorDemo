@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
 import {Rating} from 'react-native-ratings';
+import {IMAGE_URL} from '@services/constants';
 
 export interface Props {
   recipe: any;
@@ -13,7 +14,7 @@ const HomeListItem: React.FC<Props> = ({recipe, onSelect}: any) => {
       <Image
         style={styles.image}
         source={{
-          uri: 'https://i.dietdoctor.com/' + recipe.images.hz,
+          uri: IMAGE_URL + recipe.images.hz,
         }}
         resizeMode={'cover'}
       />
