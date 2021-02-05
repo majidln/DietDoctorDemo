@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PieChart Snapshot renders correctly 1`] = `
+<ChartView
+  data={
+    Array [
+      55,
+      45,
+    ]
+  }
+/>
+`;

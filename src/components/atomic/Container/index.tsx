@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
 export interface Props {
-  style: Object;
+  style?: Object;
 }
 
 export const Container: React.FC<Props> = ({children, style, ...rest}: any) => {
