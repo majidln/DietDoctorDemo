@@ -55,6 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   chart: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });

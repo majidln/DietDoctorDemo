@@ -9,7 +9,7 @@ const cache = new InMemoryCache({
           keyArgs: false,
           merge(existing = {}, incoming) {
             // merge the recipes with existing list
-            console.log('merge', existing, incoming)
+            console.log('merge', existing, incoming);
             return {
               ...incoming,
               recipes: [

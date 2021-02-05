@@ -41,5 +41,5 @@ const styles = StyleSheet.create({
   },
   percentage: {
     paddingHorizontal: 8,
-  }
+  },
 });

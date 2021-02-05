@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Container} from '@atomic-components'
+import {Container} from '@atomic-components';
 import HomeList from '@screen-components/Home/list';
 import {Recipe} from '@services/interfaces';
 import t from '@services/translate';

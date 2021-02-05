@@ -1,13 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Animated} from 'react-native';
-import { RouteProp } from '@react-navigation/native';
-import {RootStackParamList} from '@navigation'
+import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '@navigation';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
 import InstructionList from '@common-components/Instruction/list';
 import Nutrition from '@common-components/Nutrition';
-import {Recipe} from '@services/interfaces';
-
 
 import {IMAGE_URL} from '@services/constants';
 
@@ -86,10 +84,7 @@ const Detail: React.FC<Props> = ({route}) => {
           <Text style={styles.description}>{recipe.description}</Text>
           <TagList style={styles.tags} tags={recipe.tags} color="#000" />
           <Nutrition nutrition={recipe.nutrition} />
-          {recipe.instructionSections &&
-          recipe.instructionSections.length > 0 ? (
-            <InstructionList instructions={recipe.instructionSections[0]} />
-          ) : null}
+          <InstructionList instructions={recipe?.instructionSections} />
         </View>
       </Animated.ScrollView>
     </View>
