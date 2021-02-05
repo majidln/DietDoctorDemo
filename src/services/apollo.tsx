@@ -1,6 +1,7 @@
 import {ApolloClient, InMemoryCache} from '@apollo/client';
 
 const cache = new InMemoryCache({
+  addTypename: true,
   typePolicies: {
     Query: {
       fields: {
@@ -8,6 +9,7 @@ const cache = new InMemoryCache({
           keyArgs: false,
           merge(existing = {}, incoming) {
             // merge the recipes with existing list
+            console.log('merge', existing, incoming)
             return {
               ...incoming,
               recipes: [

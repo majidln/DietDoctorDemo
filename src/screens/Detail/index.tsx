@@ -3,6 +3,8 @@ import {StyleSheet, Text, View, Dimensions, Animated} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
 import InstructionList from '@common-components/Instruction/list';
+import Nutrition from '@common-components/Nutrition';
+
 
 import {IMAGE_URL} from '@services/constants';
 
@@ -15,6 +17,11 @@ const Detail: React.FC<Props> = ({route}: any) => {
   const {recipe} = route.params;
   console.log('re', recipe);
   const scrollY = React.useRef(new Animated.Value(0)).current;
+
+  const image =
+    recipe.images && recipe.images.vt
+      ? {uri: IMAGE_URL + recipe.images.vt}
+      : require('@assets/images/recipe-default-image.png');
 
   React.useEffect(() => {
     // this.changingHeight = scrollY.interpolate({
@@ -48,9 +55,7 @@ const Detail: React.FC<Props> = ({route}: any) => {
           ...styles.image,
           transform: [{scale: transform}],
         }}
-        source={{
-          uri: IMAGE_URL + recipe.images.vt,
-        }}
+        source={image}
         resizeMode={'stretch'}
       />
     );
@@ -91,8 +96,10 @@ const Detail: React.FC<Props> = ({route}: any) => {
               {recipe.difficulty.rating.toUpperCase()}
             </Text>
           </View>
+
           <Text style={styles.description}>{recipe.description}</Text>
           <TagList style={styles.tags} tags={recipe.tags} color="#000" />
+          <Nutrition nutrition={recipe.nutrition} />
           {recipe.instructionSections &&
           recipe.instructionSections.length > 0 ? (
             <InstructionList instructions={recipe.instructionSections[0]} />

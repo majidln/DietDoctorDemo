@@ -8,16 +8,13 @@ export interface Props {
 }
 
 const HomeListItem: React.FC<Props> = ({recipe, onSelect}: any) => {
-  console.log('recipe.ranking', recipe.rating);
+  const image =
+    recipe.images && recipe.images.hz
+      ? {uri: IMAGE_URL + recipe.images.hz}
+      : require('@assets/images/recipe-default-image.png');
   return (
     <TouchableOpacity style={styles.wrapper} onPress={onSelect}>
-      <Image
-        style={styles.image}
-        source={{
-          uri: IMAGE_URL + recipe.images.hz,
-        }}
-        resizeMode={'cover'}
-      />
+      <Image style={styles.image} source={image} resizeMode={'cover'} />
       <Text style={styles.title}>{recipe.title}</Text>
       <View style={styles.ratingWrapper}>
         <Rating

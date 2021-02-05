@@ -13,6 +13,9 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		16076A5EFFE2BEFD13A8BE0A /* libPods-DietDoctorDemo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B56F80798757793A390DAA5B /* libPods-DietDoctorDemo-tvOSTests.a */; };
+		1C552DCE25CDA5080030D668 /* ChartViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C552DCD25CDA5080030D668 /* ChartViewManager.swift */; };
+		1C552DD025CDA5BB0030D668 /* ChartViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C552DCF25CDA5BB0030D668 /* ChartViewManager.m */; };
+		1C552DD225CDA7630030D668 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C552DD125CDA7630030D668 /* ChartView.swift */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -52,6 +55,10 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = DietDoctorDemo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = DietDoctorDemo/main.m; sourceTree = "<group>"; };
 		14502F5BBD5CB009E5CADD86 /* Pods-DietDoctorDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDoctorDemo.release.xcconfig"; path = "Target Support Files/Pods-DietDoctorDemo/Pods-DietDoctorDemo.release.xcconfig"; sourceTree = "<group>"; };
+		1C552DCC25CDA5080030D668 /* DietDoctorDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DietDoctorDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		1C552DCD25CDA5080030D668 /* ChartViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewManager.swift; sourceTree = "<group>"; };
+		1C552DCF25CDA5BB0030D668 /* ChartViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartViewManager.m; sourceTree = "<group>"; };
+		1C552DD125CDA7630030D668 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* DietDoctorDemo-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DietDoctorDemo-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* DietDoctorDemo-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "DietDoctorDemo-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		512DDB15B8AC835FB0541834 /* Pods-DietDoctorDemo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietDoctorDemo-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-DietDoctorDemo-tvOSTests/Pods-DietDoctorDemo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +132,9 @@
 		13B07FAE1A68108700A75B9A /* DietDoctorDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1C552DCD25CDA5080030D668 /* ChartViewManager.swift */,
+				1C552DD125CDA7630030D668 /* ChartView.swift */,
+				1C552DCF25CDA5BB0030D668 /* ChartViewManager.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -132,6 +142,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				1C552DCC25CDA5080030D668 /* DietDoctorDemo-Bridging-Header.h */,
 			);
 			name = DietDoctorDemo;
 			sourceTree = "<group>";
@@ -148,7 +159,6 @@
 				D7FB51EC27B63EF3D488EC1E /* Pods-DietDoctorDemo-tvOSTests.debug.xcconfig */,
 				512DDB15B8AC835FB0541834 /* Pods-DietDoctorDemo-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -294,7 +304,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1160;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -568,7 +578,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C552DCE25CDA5080030D668 /* ChartViewManager.swift in Sources */,
+				1C552DD025CDA5BB0030D668 /* ChartViewManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				1C552DD225CDA7630030D668 /* ChartView.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -610,6 +623,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E5422977C124B179301BCC5B /* Pods-DietDoctorDemo-DietDoctorDemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -633,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1059F2E17756AFB610D07356 /* Pods-DietDoctorDemo-DietDoctorDemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = DietDoctorDemoTests/Info.plist;
@@ -666,6 +681,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = DietDoctorDemo;
+				SWIFT_OBJC_BRIDGING_HEADER = "DietDoctorDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -688,6 +704,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = DietDoctorDemo;
+				SWIFT_OBJC_BRIDGING_HEADER = "DietDoctorDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

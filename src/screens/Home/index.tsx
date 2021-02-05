@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
 import HomeList from '@screen-components/Home/list';
 import t from '@services/translate';

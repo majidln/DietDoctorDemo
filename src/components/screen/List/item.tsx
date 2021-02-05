@@ -2,22 +2,21 @@ import React from 'react';
 import {StyleSheet, Text, Image, TouchableHighlight, View} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
+import {IMAGE_URL} from '@services/constants';
 
 export interface Props {
   recipe: any;
 }
 
 const HomeListItem: React.FC<Props> = ({recipe}: any) => {
+  const image =
+    recipe.images && recipe.images.hz
+      ? {uri: IMAGE_URL + recipe.images.hz}
+      : require('@assets/images/recipe-default-image.png');
   return (
     <TouchableHighlight style={styles.wrapper}>
       <View>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'https://i.dietdoctor.com/' + recipe.images.hz,
-          }}
-          resizeMode={'cover'}
-        />
+        <Image style={styles.image} source={image} resizeMode={'cover'} />
         <Text style={styles.title}>{recipe.title}</Text>
         <View style={styles.ratingWrapper}>
           <Rating
