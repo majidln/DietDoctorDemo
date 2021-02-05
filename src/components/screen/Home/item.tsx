@@ -6,7 +6,7 @@ import {IMAGE_URL} from '@services/constants';
 
 export interface Props {
   recipe: Recipe;
-  onSelect: Function;
+  onSelect?: Function;
 }
 
 const HomeListItem: React.FC<Props> = ({recipe, onSelect}) => {

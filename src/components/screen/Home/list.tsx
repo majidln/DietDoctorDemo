@@ -5,11 +5,10 @@ import {Recipe} from '@services/interfaces';
 
 interface Props {
   recipes: Array<Recipe>;
-  onSelect: Function;
+  onSelect?: Function;
 }
 
 const HomeList: React.FC<Props> = ({recipes, onSelect, ...rest}: any) => {
-  console.log('recipes', recipes);
   return (
     <View {...rest}>
       <FlatList

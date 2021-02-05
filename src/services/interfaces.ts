@@ -12,15 +12,19 @@ export interface Tag {
 export interface Instruction {
   title: String;
   steps: Array<String>;
+  header?: Object;
+  footer?: Object;
 }
 
 export interface Images {
   hz: String;
   vt: String;
+  brightness: String;
 }
 
 export interface Recipe {
   id: string;
+  slug: String;
   title: string;
   description: string;
   nutrition: Nutrition;
@@ -30,6 +34,8 @@ export interface Recipe {
   tags: Array<Tag>;
   instructionSections: Array<Instruction>;
   rating: Number;
+  isMembersOnly: Boolean;
+  modifiedAt: String;
 }
 
 export interface RecipePage {
