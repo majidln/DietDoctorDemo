@@ -1,21 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
-
-interface RocketInventory {
-  id: number;
-  model: string;
-  year: number;
-  stock: number;
-}
-
-interface RocketInventoryData {
-  rocketInventory: RocketInventory[];
-}
-
-interface RocketInventoryVars {
-  year: number;
-}
 
 const GET_ROCKET_INVENTORY = gql`
   fragment NutritionFragment on Nutrition {
@@ -118,20 +103,42 @@ const GET_ROCKET_INVENTORY = gql`
 export interface Props {}
 
 const List: React.FC<Props> = ({}: any) => {
-  let {loading, data, error} = useQuery(GET_ROCKET_INVENTORY, {
+  let {loading, data, error, fetchMore} = useQuery(GET_ROCKET_INVENTORY, {
     variables: {
       page: 1,
-      pageSize: 5,
+      pageSize: 10,
       tagFilters: [],
       premiumOnly: false,
       includePremiumPreview: false,
     },
   });
 
+  const fetchData = () => {
+    fetchMore({
+      variables: {
+        page: data.listRecipes.nextPage,
+      },
+    });
+  };
+
+  const renderList = () => {
+    return (
+      <FlatList
+        style={styles.listWrapper}
+        data={data.listRecipes.recipes}
+        keyExtractor={(item) => item.id}
+        renderItem={({item}) => <Text>{item.title}</Text>}
+        onEndReached={() => fetchData()}
+      />
+    );
+  };
+
   console.log('in list', loading, data, error);
   return (
     <View style={styles.wrapper}>
-      <Text>In list</Text>
+      {data && data.listRecipes && data.listRecipes.recipes
+        ? renderList()
+        : null}
     </View>
   );
 };
@@ -140,6 +147,9 @@ export default List;
 
 const styles = StyleSheet.create({
   wrapper: {
+    flex: 1,
+  },
+  listWrapper: {
     flex: 1,
   },
 });
