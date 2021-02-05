@@ -1,118 +1,18 @@
 import React from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
-import {gql, useQuery} from '@apollo/client';
+import {StyleSheet, FlatList} from 'react-native';
+import {Container} from '@atomic-components';
 import ListItem from '@screen-components/List/item';
-import t from '@services/translate';
-
-const GET_ROCKET_INVENTORY = gql`
-  fragment NutritionFragment on Nutrition {
-    values {
-      carbs
-      fat
-      protein
-      fiber
-      calories
-    }
-    percentages {
-      carbs
-      fat
-      protein
-    }
-  }
-
-  fragment BaseRecipe on Recipe {
-    id
-    isMembersOnly
-    title
-    description
-    rating
-    modifiedAt
-    slug
-    nutrition {
-      ...NutritionFragment
-    }
-    time {
-      preparation
-      cook
-    }
-    difficulty {
-      rating
-      value
-    }
-    images {
-      hz
-      vt
-      brightness
-    }
-    tags {
-      id
-      type
-      title
-    }
-    servings {
-      default
-      allowed
-    }
-    strictness {
-      rating
-      value
-    }
-    instructionSections {
-      title
-      header {
-        text
-      }
-      footer {
-        text
-      }
-      steps
-    }
-    tips {
-      header
-      content
-    }
-    videos {
-      id
-      type
-    }
-  }
-
-  query GetRecipes(
-    $page: Int
-    $pageSize: Int
-    $tagFilters: [String]
-    $premiumOnly: Boolean
-    $includePremiumPreview: Boolean
-  ) {
-    listRecipes(
-      input: {
-        page: $page
-        pageSize: $pageSize
-        tagFilters: $tagFilters
-        premiumOnly: $premiumOnly
-        includePremiumPreview: $includePremiumPreview
-      }
-    ) {
-      recipes {
-        ...BaseRecipe
-      }
-      totalSize
-      nextPage
-    }
-  }
-`;
+import {useGetRecipes} from '@src/hooks/useGetRecipes';
 
 export interface Props {}
 
-const List: React.FC<Props> = ({}: any) => {
-  let {loading, data, error, fetchMore} = useQuery(GET_ROCKET_INVENTORY, {
-    variables: {
-      page: 1,
-      pageSize: 10,
-      tagFilters: [],
-      premiumOnly: false,
-      includePremiumPreview: false,
-    },
+const List: React.FC<Props> = ({navigation}) => {
+  const {data, fetchMore} = useGetRecipes({
+    page: 1,
+    pageSize: 10,
+    tagFilters: [],
+    premiumOnly: false,
+    includePremiumPreview: false,
   });
 
   const fetchData = () => {
@@ -129,26 +29,24 @@ const List: React.FC<Props> = ({}: any) => {
         style={styles.listWrapper}
         data={data.listRecipes.recipes}
         keyExtractor={(item) => item.id}
-        renderItem={({item}) => <ListItem recipe={item} />}
+        renderItem={({item}) => (
+          <ListItem
+            onSelect={() => navigation.navigate('Detail', {recipe: item})}
+            recipe={item}
+          />
+        )}
         onEndReached={() => fetchData()}
       />
     );
   };
 
-  console.log('in list', loading, data, error);
   return (
-    <View style={styles.wrapper}>
+    <Container style={styles.wrapper}>
       {data && data.listRecipes && data.listRecipes.recipes
         ? renderList()
         : null}
-    </View>
+    </Container>
   );
-};
-
-List.navigationOptions = () => {
-  return {
-    title: t.t('list.pageTitle'),
-  };
 };
 
 export default List;

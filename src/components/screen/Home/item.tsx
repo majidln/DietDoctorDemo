@@ -1,13 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
 import {Rating} from 'react-native-ratings';
+import {Recipe} from '@services/interfaces';
 import {IMAGE_URL} from '@services/constants';
 
 export interface Props {
-  recipe: any;
+  recipe: Recipe;
+  onSelect: Function;
 }
 
-const HomeListItem: React.FC<Props> = ({recipe, onSelect}: any) => {
+const HomeListItem: React.FC<Props> = ({recipe, onSelect}) => {
   const image =
     recipe.images && recipe.images.hz
       ? {uri: IMAGE_URL + recipe.images.hz}

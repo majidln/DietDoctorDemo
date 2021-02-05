@@ -2,19 +2,24 @@ import React from 'react';
 import {StyleSheet, Text, Image, TouchableHighlight, View} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
+import {Recipe} from '@services/interfaces';
 import {IMAGE_URL} from '@services/constants';
 
 export interface Props {
-  recipe: any;
+  recipe: Recipe;
+  onSelect: Function;
 }
 
-const HomeListItem: React.FC<Props> = ({recipe}: any) => {
+const HomeListItem: React.FC<Props> = ({recipe, onSelect}) => {
   const image =
     recipe.images && recipe.images.hz
       ? {uri: IMAGE_URL + recipe.images.hz}
       : require('@assets/images/recipe-default-image.png');
   return (
-    <TouchableHighlight style={styles.wrapper}>
+    <TouchableHighlight
+      style={styles.wrapper}
+      onPress={() => onSelect()}
+      underlayColor={'#fff'}>
       <View>
         <Image style={styles.image} source={image} resizeMode={'cover'} />
         <Text style={styles.title}>{recipe.title}</Text>

@@ -27,19 +27,19 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 8
+    marginTop: 8,
   },
   circle: {
     width: 30,
     height: 30,
     borderRadius: 30 / 2,
-    backgroundColor: '#70c59b'
+    backgroundColor: '#70c59b',
   },
   title: {},
   value: {
     flexDirection: 'row',
   },
   percentage: {
-    paddingHorizontal: 8
+    paddingHorizontal: 8,
   }
 });

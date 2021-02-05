@@ -1,9 +1,11 @@
 import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import Item from './item';
+import {Recipe} from '@services/interfaces';
 
-export interface Props {
-  recipe: any;
+interface Props {
+  recipes: Array<Recipe>;
+  onSelect: Function;
 }
 
 const HomeList: React.FC<Props> = ({recipes, onSelect, ...rest}: any) => {

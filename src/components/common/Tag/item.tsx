@@ -1,8 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Tag} from '@services/interfaces';
 
 export interface Props {
-  recipe: any;
+  tag: Tag;
+  color?: String;
 }
 
 const TagItem: React.FC<Props> = ({tag, color}: any) => {

@@ -2,19 +2,13 @@ import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {PieChart} from '@atomic-components/index';
 import NutritionItem from './item';
+import {Nutrition} from '@services/interfaces';
 
 export interface Props {
-  recipe: any;
+  nutrition: Nutrition;
 }
 
-const Nutrition: React.FC<Props> = ({nutrition, ...rest}: any) => {
-  console.log(
-    'Object.values(nutrition.percentages)',
-    nutrition,
-    Object.entries(nutrition.percentages).map((item) =>
-      item[0] !== '__typename' ? item[1] : 0,
-    ),
-  );
+const Nutrition: React.FC<Props> = ({nutrition}) => {
   return (
     <View style={styles.wrapper}>
       <Text style={styles.title}>Nutrition</Text>
