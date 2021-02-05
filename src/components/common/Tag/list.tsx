@@ -6,12 +6,12 @@ export interface Props {
   recipe: any;
 }
 
-const TagList: React.FC<Props> = ({tags}: any) => {
+const TagList: React.FC<Props> = ({tags, color = '#00ff00'}: any) => {
   return (
     <FlatList
       data={tags}
       keyExtractor={(item) => item.id}
-      renderItem={({item}) => <TagItem tag={item} />}
+      renderItem={({item}) => <TagItem color={color} tag={item} />}
       horizontal
       showsHorizontalScrollIndicator={false}
     />

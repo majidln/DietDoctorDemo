@@ -5,10 +5,10 @@ export interface Props {
   recipe: any;
 }
 
-const TagItem: React.FC<Props> = ({tag}: any) => {
+const TagItem: React.FC<Props> = ({tag, color}: any) => {
   return (
-    <TouchableOpacity style={styles.wrapper}>
-      <Text style={styles.title}>{tag.title}</Text>
+    <TouchableOpacity style={{...styles.wrapper, borderColor: color}}>
+      <Text style={{...styles.title, color}}>{tag.title}</Text>
     </TouchableOpacity>
   );
 };
@@ -19,11 +19,8 @@ const styles = StyleSheet.create({
   wrapper: {
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: '#00ff00',
     marginHorizontal: 10,
     padding: 4,
   },
-  title: {
-    color: '#00ff00',
-  },
+  title: {},
 });
