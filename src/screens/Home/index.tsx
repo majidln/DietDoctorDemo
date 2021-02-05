@@ -103,8 +103,8 @@ const GET_ROCKET_INVENTORY = gql`
 
 export interface Props {}
 
-const Home: React.FC<Props> = ({}: any) => {
-  let {loading, data, error, fetchMore} = useQuery(GET_ROCKET_INVENTORY, {
+const Home: React.FC<Props> = ({navigation}: any) => {
+  let {data} = useQuery(GET_ROCKET_INVENTORY, {
     variables: {
       page: 1,
       pageSize: 10,
@@ -114,22 +114,18 @@ const Home: React.FC<Props> = ({}: any) => {
     },
   });
 
-  const fetchData = () => {
-    fetchMore({
-      variables: {
-        page: data.listRecipes.nextPage,
-      },
-    });
-  };
-
-  console.log('in list', loading, data, error);
   return (
     <View style={styles.wrapper}>
       {data && data.listRecipes && data.listRecipes.recipes ? (
-        <HomeList
-          style={styles.listWrapper}
-          recipes={data.listRecipes.recipes}
-        />
+        <View>
+          <View style={styles.listToolbar}>
+            <Text style={styles.title}>New Recipes</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('List')}>
+              <Text style={styles.viewAllText}>View all</Text>
+            </TouchableOpacity>
+          </View>
+          <HomeList recipes={data.listRecipes.recipes} />
+        </View>
       ) : null}
     </View>
   );
@@ -141,7 +137,17 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
-  listWrapper: {
-    margin: 20,
+  listToolbar: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  viewAllText: {
+    color: '#0000A0',
   },
 });

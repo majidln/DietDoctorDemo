@@ -1,11 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, Image, TouchableOpacity, View} from 'react-native';
+import {Rating} from 'react-native-ratings';
 
 export interface Props {
   recipe: any;
 }
 
 const HomeListItem: React.FC<Props> = ({recipe}: any) => {
+  console.log('recipe.ranking', recipe.rating);
   return (
     <TouchableOpacity style={styles.wrapper}>
       <Image
@@ -16,6 +18,14 @@ const HomeListItem: React.FC<Props> = ({recipe}: any) => {
         resizeMode={'cover'}
       />
       <Text style={styles.title}>{recipe.title}</Text>
+      <View style={styles.ratingWrapper}>
+        <Rating
+          ratingCount={5}
+          readonly={true}
+          startingValue={recipe.rating}
+          imageSize={20}
+        />
+      </View>
     </TouchableOpacity>
   );
 };
@@ -38,6 +48,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4,
     marginVertical: 8,
+    justifyContent: 'space-between',
   },
   image: {
     width: '100%',
@@ -48,5 +59,10 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     fontSize: 18,
     paddingVertical: 10,
+  },
+  ratingWrapper: {
+    alignItems: 'flex-start',
+    paddingBottom: 5,
+    paddingLeft: 30,
   },
 });

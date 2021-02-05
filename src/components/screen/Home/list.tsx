@@ -24,5 +24,7 @@ const HomeList: React.FC<Props> = ({recipes, ...rest}: any) => {
 export default HomeList;
 
 const styles = StyleSheet.create({
-  listWrapper: {},
+  listWrapper: {
+    paddingLeft: 20,
+  },
 });
