@@ -1,41 +1,32 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Animated} from 'react-native';
+import {RouteProp} from '@react-navigation/native';
+import {RootStackParamList} from '@navigation';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
 import InstructionList from '@common-components/Instruction/list';
+import Nutrition from '@common-components/Nutrition';
 
 import {IMAGE_URL} from '@services/constants';
 
 const {height} = Dimensions.get('window');
 const IMAGE_HEIGHT = (2 * height) / 3;
 
-export interface Props {}
+type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 
-const Detail: React.FC<Props> = ({route}: any) => {
+export interface Props {
+  route: DetailScreenRouteProp;
+}
+
+const Detail: React.FC<Props> = ({route}) => {
   const {recipe} = route.params;
-  console.log('re', recipe);
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
-  React.useEffect(() => {
-    // this.changingHeight = scrollY.interpolate({
-    //   inputRange: [0, IMAGE_HEIGHT]
-    //   outputRange: [120, 10],
-    //   extrapolate: "clamp"
-    // })
-    // route.setParams
-    /**
-     *
-     this.scrollY = new Animated.Value(0);
-        this.changingHeight = this.scrollY.interpolate({
-            inputRange: [0, 50],
-            outputRange: [120, 60],
-            extrapolate: "clamp"
-        });
-        this.props.navigation.setParams({
-            changingHeight: this.changingHeight
-        });
-     */
-  }, []);
+  const image =
+    recipe.images && recipe.images.vt
+      ? {uri: IMAGE_URL + recipe.images.vt}
+      : require('@assets/images/recipe-default-image.png');
+
   const renderImage = () => {
     const transform = scrollY.interpolate({
       inputRange: [0, IMAGE_HEIGHT],
@@ -48,9 +39,7 @@ const Detail: React.FC<Props> = ({route}: any) => {
           ...styles.image,
           transform: [{scale: transform}],
         }}
-        source={{
-          uri: IMAGE_URL + recipe.images.vt,
-        }}
+        source={image}
         resizeMode={'stretch'}
       />
     );
@@ -93,21 +82,12 @@ const Detail: React.FC<Props> = ({route}: any) => {
           </View>
           <Text style={styles.description}>{recipe.description}</Text>
           <TagList style={styles.tags} tags={recipe.tags} color="#000" />
-          {recipe.instructionSections &&
-          recipe.instructionSections.length > 0 ? (
-            <InstructionList instructions={recipe.instructionSections[0]} />
-          ) : null}
+          <Nutrition nutrition={recipe.nutrition} />
+          <InstructionList instructions={recipe?.instructionSections} />
         </View>
       </Animated.ScrollView>
     </View>
   );
-};
-
-Detail.navigationOptions = ({route}: any) => {
-  console.log('route is', route);
-  return {
-    title: route.params.recipe.title,
-  };
 };
 
 export default Detail;

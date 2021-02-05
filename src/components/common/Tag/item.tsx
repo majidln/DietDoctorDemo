@@ -1,11 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Tag} from '@services/interfaces';
 
 export interface Props {
-  recipe: any;
+  tag: Tag;
+  color?: String;
 }
 
-const TagItem: React.FC<Props> = ({tag, color}: any) => {
+const TagItem: React.FC<Props> = ({tag, color = '#00ff00'}: any) => {
   return (
     <TouchableOpacity style={{...styles.wrapper, borderColor: color}}>
       <Text style={{...styles.title, color}}>{tag.title}</Text>

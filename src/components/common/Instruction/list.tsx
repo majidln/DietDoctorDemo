@@ -1,29 +1,24 @@
 import React from 'react';
-import {View, FlatList} from 'react-native';
+import {View} from 'react-native';
 import InstructionItem from './item';
+import {Instruction} from '@services/interfaces';
 
 export interface Props {
-  recipe: any;
+  instructions: Array<Instruction>;
 }
 
-const Instruction: React.FC<Props> = ({instructions}: any) => {
-  console.log('instructions', instructions);
+const InstructionList: React.FC<Props> = ({instructions}) => {
+  if (!(instructions && instructions.length > 0)) {
+    return null;
+  }
+  // TODO show all instructions
   return (
     <View>
-      {instructions.steps.map((item, index) => (
+      {instructions[0].steps.map((item, index) => (
         <InstructionItem key={index} instruction={item} step={index + 1} />
       ))}
     </View>
-    // <FlatList
-    //   data={instructions.steps}
-    //   keyExtractor={(_, index) => index.toString()}
-    //   renderItem={({item, index}) => (
-    //     <InstructionItem instruction={item} step={index + 1} />
-    //   )}
-    // />
   );
 };
 
-export default Instruction;
-
-// const styles = StyleSheet.create({});
+export default InstructionList;

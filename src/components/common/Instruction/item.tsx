@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 export interface Props {
-  recipe: any;
+  instruction: String;
+  step: Number;
 }
 
-const InstructionItem: React.FC<Props> = ({instruction, step}: any) => {
-  console.log('instruction', instruction);
+const InstructionItem: React.FC<Props> = ({instruction, step}) => {
   return (
     <View style={{...styles.wrapper}}>
       <View style={styles.stepWrapper}>

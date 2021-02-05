@@ -6,14 +6,16 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.2",
+    "cross-fetch": "^3.0.6",
     "graphql": "^15.5.0",
     "i18n-js": "^3.8.0",
     "react": "16.13.1",
@@ -51,6 +53,13 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "setupFiles": [
+      "./node_modules/react-native/jest/setup.js",
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   }
 }
