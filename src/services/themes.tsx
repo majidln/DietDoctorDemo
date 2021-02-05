@@ -4,8 +4,7 @@ const MyTheme = {
   ...DefaultTheme.colors,
   dark: false,
   colors: {
-    primary: '#091E31',
-    secondary: '#8DD7F7',
+    primary: '#00AE5F',
   },
 };
 

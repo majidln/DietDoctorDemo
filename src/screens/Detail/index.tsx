@@ -85,6 +85,10 @@ const Detail: React.FC<Props> = ({route}: any) => {
   );
 };
 
+Detail.navigationOptions = ({route}) => ({
+  title: route.params.recipe.title,
+});
+
 export default Detail;
 
 const styles = StyleSheet.create({

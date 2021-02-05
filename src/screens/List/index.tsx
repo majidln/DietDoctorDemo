@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
 import ListItem from '@screen-components/List/item';
+import t from '@services/translate';
 
 const GET_ROCKET_INVENTORY = gql`
   fragment NutritionFragment on Nutrition {
@@ -142,6 +143,12 @@ const List: React.FC<Props> = ({}: any) => {
         : null}
     </View>
   );
+};
+
+List.navigationOptions = () => {
+  return {
+    title: t.t('list.pageTitle'),
+  };
 };
 
 export default List;

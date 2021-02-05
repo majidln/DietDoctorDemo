@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
 import HomeList from '@screen-components/Home/list';
+import t from '@services/translate';
 
 const GET_ROCKET_INVENTORY = gql`
   fragment NutritionFragment on Nutrition {
@@ -114,14 +115,15 @@ const Home: React.FC<Props> = ({navigation}: any) => {
     },
   });
 
+  console.log('data is', data);
   return (
     <View style={styles.wrapper}>
       {data && data.listRecipes && data.listRecipes.recipes ? (
         <View>
           <View style={styles.listToolbar}>
-            <Text style={styles.title}>New Recipes</Text>
+            <Text style={styles.title}>{t.t('home.new')}</Text>
             <TouchableOpacity onPress={() => navigation.navigate('List')}>
-              <Text style={styles.viewAllText}>View all</Text>
+              <Text style={styles.viewAllText}>{t.t('home.viewAll')}</Text>
             </TouchableOpacity>
           </View>
           <HomeList
@@ -132,6 +134,12 @@ const Home: React.FC<Props> = ({navigation}: any) => {
       ) : null}
     </View>
   );
+};
+
+Home.navigationOptions = () => {
+  return {
+    title: t.t('home.pageTitle'),
+  };
 };
 
 export default Home;

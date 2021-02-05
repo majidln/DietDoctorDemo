@@ -12,6 +12,7 @@ module.exports = {
       },
       "babel-module": {
         "@src": "./src",
+        "@assets": "./assets",
         "@screens": "./src/screens",
         "@navigation": "./src/navigation",
         "@services": "./src/services",
