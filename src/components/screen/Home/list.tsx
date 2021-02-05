@@ -6,7 +6,7 @@ export interface Props {
   recipe: any;
 }
 
-const HomeList: React.FC<Props> = ({recipes, ...rest}: any) => {
+const HomeList: React.FC<Props> = ({recipes, onSelect, ...rest}: any) => {
   console.log('recipes', recipes);
   return (
     <View {...rest}>
@@ -15,7 +15,9 @@ const HomeList: React.FC<Props> = ({recipes, ...rest}: any) => {
         data={recipes}
         keyExtractor={(item) => item.id}
         horizontal
-        renderItem={({item}) => <Item recipe={item} />}
+        renderItem={({item}) => (
+          <Item recipe={item} onSelect={() => onSelect(item)} />
+        )}
       />
     </View>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {gql, useQuery} from '@apollo/client';
+import ListItem from '@screen-components/List/item';
 
 const GET_ROCKET_INVENTORY = gql`
   fragment NutritionFragment on Nutrition {
@@ -127,7 +128,7 @@ const List: React.FC<Props> = ({}: any) => {
         style={styles.listWrapper}
         data={data.listRecipes.recipes}
         keyExtractor={(item) => item.id}
-        renderItem={({item}) => <Text>{item.title}</Text>}
+        renderItem={({item}) => <ListItem recipe={item} />}
         onEndReached={() => fetchData()}
       />
     );

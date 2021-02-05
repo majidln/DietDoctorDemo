@@ -124,7 +124,10 @@ const Home: React.FC<Props> = ({navigation}: any) => {
               <Text style={styles.viewAllText}>View all</Text>
             </TouchableOpacity>
           </View>
-          <HomeList recipes={data.listRecipes.recipes} />
+          <HomeList
+            recipes={data.listRecipes.recipes}
+            onSelect={(recipe) => navigation.navigate('Detail', {recipe})}
+          />
         </View>
       ) : null}
     </View>

@@ -6,10 +6,10 @@ export interface Props {
   recipe: any;
 }
 
-const HomeListItem: React.FC<Props> = ({recipe}: any) => {
+const HomeListItem: React.FC<Props> = ({recipe, onSelect}: any) => {
   console.log('recipe.ranking', recipe.rating);
   return (
-    <TouchableOpacity style={styles.wrapper}>
+    <TouchableOpacity style={styles.wrapper} onPress={onSelect}>
       <Image
         style={styles.image}
         source={{
