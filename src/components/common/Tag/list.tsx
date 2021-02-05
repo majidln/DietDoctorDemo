@@ -9,7 +9,7 @@ export interface Props {
   [x: string]: any;
 }
 
-const TagList: React.FC<Props> = ({tags, color = '#00ff00', ...rest}: any) => {
+const TagList: React.FC<Props> = ({tags, color, ...rest}: any) => {
   return (
     <FlatList
       {...rest}

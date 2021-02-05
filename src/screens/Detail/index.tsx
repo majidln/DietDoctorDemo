@@ -80,7 +80,6 @@ const Detail: React.FC<Props> = ({route}) => {
               {recipe.difficulty.rating.toUpperCase()}
             </Text>
           </View>
-
           <Text style={styles.description}>{recipe.description}</Text>
           <TagList style={styles.tags} tags={recipe.tags} color="#000" />
           <Nutrition nutrition={recipe.nutrition} />

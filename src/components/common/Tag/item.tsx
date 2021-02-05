@@ -7,7 +7,7 @@ export interface Props {
   color?: String;
 }
 
-const TagItem: React.FC<Props> = ({tag, color}: any) => {
+const TagItem: React.FC<Props> = ({tag, color = '#00ff00'}: any) => {
   return (
     <TouchableOpacity style={{...styles.wrapper, borderColor: color}}>
       <Text style={{...styles.title, color}}>{tag.title}</Text>
