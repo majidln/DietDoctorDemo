@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ScrollView,
-  Dimensions,
-  Animated,
-} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, Animated} from 'react-native';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
 import InstructionList from '@common-components/Instruction/list';
@@ -24,6 +16,26 @@ const Detail: React.FC<Props> = ({route}: any) => {
   console.log('re', recipe);
   const scrollY = React.useRef(new Animated.Value(0)).current;
 
+  React.useEffect(() => {
+    // this.changingHeight = scrollY.interpolate({
+    //   inputRange: [0, IMAGE_HEIGHT]
+    //   outputRange: [120, 10],
+    //   extrapolate: "clamp"
+    // })
+    // route.setParams
+    /**
+     *
+     this.scrollY = new Animated.Value(0);
+        this.changingHeight = this.scrollY.interpolate({
+            inputRange: [0, 50],
+            outputRange: [120, 60],
+            extrapolate: "clamp"
+        });
+        this.props.navigation.setParams({
+            changingHeight: this.changingHeight
+        });
+     */
+  }, []);
   const renderImage = () => {
     const transform = scrollY.interpolate({
       inputRange: [0, IMAGE_HEIGHT],
@@ -91,9 +103,12 @@ const Detail: React.FC<Props> = ({route}: any) => {
   );
 };
 
-Detail.navigationOptions = ({route}) => ({
-  title: route.params.recipe.title,
-});
+Detail.navigationOptions = ({route}: any) => {
+  console.log('route is', route);
+  return {
+    title: route.params.recipe.title,
+  };
+};
 
 export default Detail;
 
