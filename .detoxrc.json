@@ -4,10 +4,11 @@
   "configurations": {
     "ios": {
       "type": "ios.simulator",
-      "binaryPath": "SPECIFY_PATH_TO_YOUR_APP_BINARY",
+      "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/DietDoctorDemo.app",
+      "build": "xcodebuild -workspace ios/DietDoctorDemo.xcworkspace -scheme DietDoctorDemo -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
       "device": {
         "type": "iPhone 11"
-      }
+      },
     },
     "android": {
       "type": "android.emulator",

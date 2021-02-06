@@ -11,7 +11,7 @@ export interface Props {}
 const Home: React.FC<Props> = ({navigation}: any) => {
   const {data} = useGetRecipes({
     page: 1,
-    pageSize: 10,
+    pageSize: 5,
     tagFilters: [],
     premiumOnly: false,
     includePremiumPreview: false,
