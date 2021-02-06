@@ -8,15 +8,17 @@ import {IMAGE_URL} from '@services/constants';
 export interface Props {
   recipe: Recipe;
   onSelect: Function;
+  [x: string]: any;
 }
 
-const HomeListItem: React.FC<Props> = ({recipe, onSelect}) => {
+const HomeListItem: React.FC<Props> = ({recipe, onSelect, ...rest}) => {
   const image =
     recipe.images && recipe.images.hz
       ? {uri: IMAGE_URL + recipe.images.hz}
       : require('@assets/images/recipe-default-image.png');
   return (
     <TouchableHighlight
+      {...rest}
       style={styles.wrapper}
       onPress={() => onSelect()}
       underlayColor={'#fff'}>

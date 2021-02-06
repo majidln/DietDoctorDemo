@@ -45,7 +45,7 @@ function MainNavigation() {
       <Stack.Screen
         name="Detail"
         component={DetailScreen}
-        options={(route: any) => {
+        options={({route}) => {
           return {
             title: route.params.recipe?.title,
           };

@@ -8,7 +8,7 @@
       "build": "xcodebuild -workspace ios/DietDoctorDemo.xcworkspace -scheme DietDoctorDemo -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
       "device": {
         "type": "iPhone 11"
-      },
+      }
     },
     "android": {
       "type": "android.emulator",

@@ -11,19 +11,23 @@ export interface Props {}
 const Home: React.FC<Props> = ({navigation}: any) => {
   const {data} = useGetRecipes({
     page: 1,
-    pageSize: 5,
+    pageSize: 2,
     tagFilters: [],
     premiumOnly: false,
     includePremiumPreview: false,
   });
 
   return (
-    <Container style={styles.wrapper} testID="homeView">
+    <Container testID="homeView" style={styles.wrapper}>
       {data && data.listRecipes && data.listRecipes.recipes ? (
         <View>
           <View style={styles.listToolbar}>
-            <Text style={styles.title}>{t.t('home.new')}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('List')}>
+            <Text testID="newLabel" style={styles.title}>
+              {t.t('home.new')}
+            </Text>
+            <TouchableOpacity
+              testID="viewAllBtn"
+              onPress={() => navigation.navigate('List')}>
               <Text style={styles.viewAllText}>{t.t('home.viewAll')}</Text>
             </TouchableOpacity>
           </View>

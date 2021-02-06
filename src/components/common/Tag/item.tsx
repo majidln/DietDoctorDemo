@@ -5,11 +5,12 @@ import {Tag} from '@services/interfaces';
 export interface Props {
   tag: Tag;
   color?: String;
+  [x: string]: any;
 }
 
-const TagItem: React.FC<Props> = ({tag, color = '#00ff00'}: any) => {
+const TagItem: React.FC<Props> = ({tag, color = '#00ff00', ...rest}: any) => {
   return (
-    <TouchableOpacity style={{...styles.wrapper, borderColor: color}}>
+    <TouchableOpacity {...rest} style={{...styles.wrapper, borderColor: color}}>
       <Text style={{...styles.title, color}}>{tag.title}</Text>
     </TouchableOpacity>
   );

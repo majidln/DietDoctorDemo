@@ -26,11 +26,13 @@ const List: React.FC<Props> = ({navigation}) => {
   const renderList = () => {
     return (
       <FlatList
+        testID="listRecipes"
         style={styles.listWrapper}
         data={data.listRecipes.recipes}
         keyExtractor={(item) => item.id}
-        renderItem={({item}) => (
+        renderItem={({item, index}) => (
           <ListItem
+            testID={'listRecipes-' + index}
             onSelect={() => navigation.navigate('Detail', {recipe: item})}
             recipe={item}
           />
@@ -41,7 +43,7 @@ const List: React.FC<Props> = ({navigation}) => {
   };
 
   return (
-    <Container style={styles.wrapper}>
+    <Container testID="listView" style={styles.wrapper}>
       {data && data.listRecipes && data.listRecipes.recipes
         ? renderList()
         : null}
