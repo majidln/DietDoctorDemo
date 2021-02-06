@@ -36,10 +36,12 @@
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^25.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "detox": "^18.2.2",
     "eslint": "^6.5.1",
     "eslint-import-resolver-babel-module": "^5.2.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^25.1.0",
+    "jest-circus": "^26.6.3",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
@@ -60,6 +62,7 @@
     ],
     "moduleNameMapper": {
       "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+    },
+    "testRunner": "jest-circus/runner"
   }
 }

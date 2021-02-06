@@ -18,7 +18,7 @@ const Home: React.FC<Props> = ({navigation}: any) => {
   });
 
   return (
-    <Container style={styles.wrapper}>
+    <Container style={styles.wrapper} testID="homeView">
       {data && data.listRecipes && data.listRecipes.recipes ? (
         <View>
           <View style={styles.listToolbar}>
