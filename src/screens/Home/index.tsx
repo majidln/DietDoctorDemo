@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Container} from '@atomic-components/index';
+import {PieChart, Container} from '@atomic-components/index';
 import HomeList from '@screen-components/Home/list';
 import {Recipe} from '@services/interfaces';
 import t from '@services/translate';
@@ -19,6 +19,11 @@ const Home: React.FC<Props> = ({navigation}: any) => {
 
   return (
     <Container testID="homeView" style={styles.wrapper}>
+      <PieChart
+        style={{width: '100%', height: 400}}
+        data={[20, 50, 30]}
+        colors={['#ff0000', '#00ff00', '#0000ff']}
+      />
       {data && data.listRecipes && data.listRecipes.recipes ? (
         <View>
           <View style={styles.listToolbar}>
