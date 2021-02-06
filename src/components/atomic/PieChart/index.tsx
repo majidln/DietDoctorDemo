@@ -1,5 +1,6 @@
 import React from 'react';
-import {requireNativeComponent} from 'react-native';
+import {requireNativeComponent, Platform} from 'react-native';
+
 const ChartView = requireNativeComponent('ChartView');
 
 export interface Props {
@@ -7,5 +8,8 @@ export interface Props {
 }
 
 export const PieChart: React.FC<Props> = ({data, ...rest}: any) => {
+  if (Platform.OS === 'android') {
+    return null;
+  }
   return <ChartView data={data} {...rest} />;
 };

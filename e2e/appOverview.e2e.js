@@ -36,7 +36,7 @@ describe('App', () => {
 
     // open list screen
     await expect(element(by.id('listView'))).toBeVisible();
-    await element(by.id('listRecipes')).scroll(250, 'bottom');
+    await element(by.id('listRecipes')).scroll(250, 'down');
 
     // select second item
     await element(by.id('listRecipes-1')).tap();
@@ -46,7 +46,6 @@ describe('App', () => {
     // open detail screen
     await element(by.id('detailScroll')).scroll(300, 'down');
     // scroll tag list
-    await element(by.id('tagList')).swipe('left', 'fast', 0.5);
     await element(by.id('detailScroll')).swipe('up', 'fast', 0.5);
   });
 });
