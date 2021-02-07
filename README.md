@@ -56,16 +56,12 @@ yarn detox:test:ios #run e2e test in emulator
 > Detox needs to get network images so it starts running, be patient to start running 
 
 
-###Screenshots
+### Screenshots
 
-Image:
+![Home](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/home.jpeg?raw=true)
 
-###Screenshots
+![List](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/list.jpeg?raw=true)
 
-![Home](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/home.jpeg?raw=true | width=100)
+![Detail](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/detail.JPEG?raw=true)
 
-![List](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/list.jpeg?raw=true | width=100)
-
-![Detail](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/detail.JPEG?raw=true | width=100)
-
-![UnitTests](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/test.png?raw=true | width=100)
+![UnitTests](https://github.com/majidln/DietDoctorDemo/blob/main/screenshots/test.png?raw=true)
