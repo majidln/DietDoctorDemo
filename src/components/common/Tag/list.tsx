@@ -16,7 +16,9 @@ const TagList: React.FC<Props> = ({tags, color, ...rest}: any) => {
       {...rest}
       data={tags}
       keyExtractor={(item) => item.id}
-      renderItem={({item, index}) => <TagItem testID={"tagListItem-" + index} color={color} tag={item} />}
+      renderItem={({item, index}) => (
+        <TagItem testID={'tagListItem-' + index} color={color} tag={item} />
+      )}
       horizontal
       showsHorizontalScrollIndicator={false}
     />

@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest --coverage",
+    "test": "jest --coverage --silent=false",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "detox:build:android": "detox build -c android",
@@ -63,7 +63,8 @@
     ],
     "setupFiles": [
       "./node_modules/react-native/jest/setup.js",
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./jestSetup.ts"
     ],
     "moduleNameMapper": {
       "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"

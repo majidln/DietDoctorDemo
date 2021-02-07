@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {Container} from '@atomic-components';
 import ListItem from '@screen-components/List/item';
 import {useGetRecipes} from '@src/hooks/useGetRecipes';
 
-export interface Props {}
-
-const List: React.FC<Props> = ({navigation}) => {
+const List: React.FC = () => {
+  const navigation = useNavigation();
   const {data, fetchMore} = useGetRecipes({
     page: 1,
     pageSize: 10,
@@ -30,14 +30,15 @@ const List: React.FC<Props> = ({navigation}) => {
         style={styles.listWrapper}
         data={data.listRecipes.recipes}
         keyExtractor={(item) => item.id}
+        onEndReached={() => fetchData()}
+        onEndReachedThreshold={1}
         renderItem={({item, index}) => (
           <ListItem
-            testID={'listRecipes-' + index}
+            testID={index}
             onSelect={() => navigation.navigate('Detail', {recipe: item})}
             recipe={item}
           />
         )}
-        onEndReached={() => fetchData()}
       />
     );
   };

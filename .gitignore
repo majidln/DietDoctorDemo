@@ -64,5 +64,3 @@ buck-out/
 
 # detox artifacts
 artifacts/
-
-coverage/

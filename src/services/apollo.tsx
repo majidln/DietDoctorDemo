@@ -1,5 +1,6 @@
 import 'cross-fetch/polyfill';
 import {ApolloClient, InMemoryCache} from '@apollo/client';
+import {BASE_URL} from '@services/constants';
 
 const cache = new InMemoryCache({
   addTypename: true,
@@ -10,7 +11,6 @@ const cache = new InMemoryCache({
           keyArgs: false,
           merge(existing = {}, incoming) {
             // merge the recipes with existing list
-            console.log('merge', existing, incoming);
             return {
               ...incoming,
               recipes: [
@@ -27,7 +27,7 @@ const cache = new InMemoryCache({
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'https://ddapi.production.dietdoctor.com/v1',
+  uri: BASE_URL,
   cache,
 });
 
