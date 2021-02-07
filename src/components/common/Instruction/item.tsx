@@ -12,7 +12,7 @@ const InstructionItem: React.FC<Props> = ({instruction, step}) => {
       <View style={styles.stepWrapper}>
         <Text style={styles.step}>{step}</Text>
       </View>
-      <Text style={{...styles.title}}>{instruction}</Text>
+      <Text style={styles.title}>{instruction}</Text>
     </View>
   );
 };
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
   stepWrapper: {
     marginHorizontal: 10,
     backgroundColor: '#70c59b',
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2,
+    width: 40,
+    height: 40,
+    borderRadius: 40 / 2,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -38,5 +38,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
   },
-  title: {},
+  title: {
+    flex: 1,
+  },
 });

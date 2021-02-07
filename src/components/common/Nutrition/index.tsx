@@ -1,42 +1,75 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 import {PieChart} from '@atomic-components/index';
+import {Section} from '@atomic-components';
 import NutritionItem from './item';
-import {Nutrition} from '@services/interfaces';
+import {Ingredient} from '@services/interfaces';
+import t from '@services/translate';
 
 export interface Props {
-  nutrition: Nutrition;
+  values: Ingredient;
+  percentages: Ingredient;
 }
 
-const NutritionList: React.FC<Props> = ({nutrition}) => {
+const ingredientsInChart: Array<String> = ['carbs', 'fat', 'protein'];
+
+const NutritionList: React.FC<Props> = ({values, percentages}) => {
+  const {colors} = useTheme();
+  const [selected, setSelected] = React.useState<String>('carbs');
+
+  const chartData: Array<Number> = [];
+  const chartColors: Array<String> = [];
+  ingredientsInChart.forEach((ingredient: String) => {
+    if (percentages[ingredient]) {
+      chartData.push(percentages[ingredient]);
+      chartColors.push(colors[ingredient]);
+    }
+  });
+
+  const onSelect = (item: Array<string>) => {
+    setSelected(item[0]);
+  };
+
+  const onChartSelect = (index: Number) => {
+    console.log('onChartSelect', index);
+    const item: String = ingredientsInChart[index];
+    setSelected(item);
+  };
+
+  const selectedItem: Number = ingredientsInChart.indexOf(selected);
+
   return (
-    <View style={styles.wrapper}>
-      <Text style={styles.title}>Nutrition</Text>
-      <View style={styles.contentWrapper}>
-        <View style={styles.listWrapper}>
-          {Object.entries(nutrition.values).map((item, index) => {
-            if (item[0] === '__typename') {
-              return null;
-            }
-            return (
-              <NutritionItem
-                key={index}
-                nutrition={item}
-                percentages={nutrition.percentages}
-              />
-            );
-          })}
-        </View>
-        <View style={styles.chartWrapper}>
-          <PieChart
-            style={styles.chart}
-            data={Object.entries(nutrition.percentages).map((item) =>
-              item[0] !== '__typename' ? item[1] : 0,
-            )}
-          />
+    <Section title={t.t('nutrition.title')}>
+      <View style={styles.wrapper}>
+        <View style={styles.contentWrapper}>
+          <View style={styles.listWrapper}>
+            {Object.entries(values).map((item, index) => {
+              if (item[0] === '__typename') {
+                return null;
+              }
+              return (
+                <NutritionItem
+                  key={index}
+                  nutrition={item}
+                  percentages={percentages}
+                  onSelect={() => onSelect(item)}
+                  selected={selected}
+                />
+              );
+            })}
+          </View>
+          <View style={styles.chartWrapper}>
+            <PieChart
+              data={chartData}
+              colors={chartColors}
+              selectedIndex={selectedItem}
+              onSelect={(index: Number) => onChartSelect(index)}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </Section>
   );
 };
 
@@ -44,7 +77,6 @@ export default NutritionList;
 
 const styles = StyleSheet.create({
   wrapper: {},
-  title: {},
   contentWrapper: {
     flexDirection: 'row',
   },

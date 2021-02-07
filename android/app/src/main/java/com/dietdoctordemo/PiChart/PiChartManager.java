@@ -92,8 +92,14 @@ public class PiChartManager extends SimpleViewManager<PieChart> {
 
     @ReactProp(name = "selectedIndex")
     public void setSelectedIndex(PieChart pieChart, @Nullable Integer selectedIndex) {
-        pieChart.highlightValue(selectedIndex, 0, false);
-        pieChart.invalidate();
+        if (selectedIndex != null) {
+            try {
+                pieChart.highlightValue(selectedIndex, 0, false);
+            } catch(Exception ex) {
+                
+            }
+            pieChart.invalidate();
+        }
     }
 
     @ReactProp(name = "data")
@@ -107,11 +113,11 @@ public class PiChartManager extends SimpleViewManager<PieChart> {
         setChartDataSet((pieChart));
     }
 
-
-
     @ReactProp(name = "colors")
     public void setColors(PieChart pieChart, @Nullable ReadableArray colors) {
-//        ArrayList<Object> dataObjects = data.;
+        if (colors.size() < 1) {
+            return;
+        }
         ArrayList<Integer> chartColors = new ArrayList<>();
 
         for (int i = 0; i < colors.size(); i++) {

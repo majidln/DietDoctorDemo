@@ -2,11 +2,26 @@
 
 exports[`PieChart Snapshot renders correctly 1`] = `
 <ChartView
+  colors={
+    Array [
+      "#ff0000",
+      "#00ff00",
+      "#0000ff",
+    ]
+  }
   data={
     Array [
       55,
-      45,
+      20,
+      25,
     ]
+  }
+  onSelectedItem={[Function]}
+  selectedIndex={1}
+  style={
+    Object {
+      "flex": 1,
+    }
   }
 />
 `;

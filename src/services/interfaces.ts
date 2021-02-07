@@ -1,6 +1,14 @@
+export interface Ingredient {
+  carbs?: Number;
+  fat?: Number;
+  protein?: Number;
+  fiber?: Number;
+  calories?: Number;
+}
+
 export interface Nutrition {
-  values: Object;
-  percentages: Object;
+  values: Ingredient;
+  percentages: Ingredient;
 }
 
 export interface Tag {

@@ -84,7 +84,10 @@ const Detail: React.FC<Props> = ({route}) => {
           </View>
           <Text style={styles.description}>{recipe.description}</Text>
           <TagList style={styles.tags} tags={recipe.tags} color="#000" />
-          <Nutrition nutrition={recipe.nutrition} />
+          <Nutrition
+            values={recipe.nutrition.values}
+            percentages={recipe.nutrition.percentages}
+          />
           <InstructionList instructions={recipe?.instructionSections} />
         </View>
       </Animated.ScrollView>
