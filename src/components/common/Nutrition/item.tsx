@@ -31,7 +31,7 @@ const NutritionItem: React.FC<Props> = ({
         <Text style={styles.title}>{nutrition[0]}</Text>
       </View>
       <View style={styles.value}>
-        <Text style={styles.mass}>
+        <Text>
           {t.t('detail.mass', {value: Number.parseInt(nutrition[1])})}
         </Text>
         {percentages[nutrition[0]] ? (
@@ -49,7 +49,6 @@ export default NutritionItem;
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
     marginTop: 8,
   },
   nameWrapper: {
@@ -84,7 +83,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  mass: {},
   percentage: {
     paddingHorizontal: 8,
   },

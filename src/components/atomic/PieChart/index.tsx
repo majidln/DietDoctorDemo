@@ -19,7 +19,6 @@ export const PieChart: React.FC<Props> = ({
   onSelect,
   ...rest
 }: any) => {
-  console.log('selectedIndex', selectedIndex);
   return (
     <RNChartView
       style={styles.wrapper}

@@ -18,4 +18,10 @@ export default {
   nutrition: {
     title: 'Nutrition',
   },
+  components: {
+    section: {
+      showDetail: 'Show Detail',
+      hideDetail: 'Hide Detail',
+    },
+  },
 };

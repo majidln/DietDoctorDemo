@@ -14,10 +14,13 @@ exports[`Section Snapshot renders correctly 1`] = `
     onStartShouldSetResponder={[Function]}
     style={
       Object {
+        "flexDirection": "row",
         "height": 30,
+        "justifyContent": "space-between",
         "opacity": 1,
       }
     }
+    testID="sectionButton"
   >
     <Text
       style={
@@ -28,6 +31,9 @@ exports[`Section Snapshot renders correctly 1`] = `
       }
     >
       open down
+    </Text>
+    <Text>
+      Show Detail
     </Text>
   </View>
 </View>
