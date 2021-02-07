@@ -25,6 +25,10 @@ describe('App', () => {
     // scroll tag list
     await element(by.id('tagList')).swipe('left', 'fast', 0.5);
     await element(by.id('detailScroll')).swipe('up', 'fast', 0.5);
+
+    await element(by.id('sectionButton')).tap();
+    await element(by.id('carbs')).tap();
+    await element(by.id('protein')).tap();
   });
 
   it('should show list and detail', async () => {

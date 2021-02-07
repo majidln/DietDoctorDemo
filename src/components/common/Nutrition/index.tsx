@@ -32,7 +32,6 @@ const NutritionList: React.FC<Props> = ({values, percentages}) => {
   };
 
   const onChartSelect = (index: Number) => {
-    console.log('onChartSelect', index);
     const item: String = ingredientsInChart[index];
     setSelected(item);
   };

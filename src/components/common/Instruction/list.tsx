@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   title: {
+    marginVertical: 12,
     padding: 8,
     color: '#fff',
     fontSize: 18,

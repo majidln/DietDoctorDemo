@@ -18,7 +18,6 @@ const List: React.FC = () => {
     premiumOnly: false,
     includePremiumPreview: false,
   });
-  console.log('data in list', data, navigation);
 
   const fetchData = () => {
     fetchMore({
@@ -39,7 +38,7 @@ const List: React.FC = () => {
         onEndReachedThreshold={1}
         renderItem={({item, index}) => (
           <ListItem
-            testID={'listItem-' + index}
+            testID={'listRecipes-' + index}
             onPress={() => navigation.navigate('Detail', {recipe: item})}
             recipe={item}
           />

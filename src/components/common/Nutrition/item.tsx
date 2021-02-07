@@ -18,7 +18,10 @@ const NutritionItem: React.FC<Props> = ({
 }: any) => {
   const {colors} = useTheme();
   return (
-    <TouchableOpacity style={styles.wrapper} onPress={() => onSelect()}>
+    <TouchableOpacity
+      style={styles.wrapper}
+      onPress={() => onSelect()}
+      testID={nutrition[0]}>
       <View style={styles.nameWrapper}>
         {['carbs', 'fat', 'protein'].includes(nutrition[0]) ? (
           <View

@@ -21,6 +21,7 @@ export const PieChart: React.FC<Props> = ({
 }: any) => {
   return (
     <RNChartView
+      testID="pieChart"
       style={styles.wrapper}
       data={data}
       colors={colors}
