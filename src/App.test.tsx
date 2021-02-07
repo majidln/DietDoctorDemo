@@ -7,7 +7,7 @@ import renderer from 'react-test-renderer';
 
 jest.useFakeTimers();
 
-it('renders app correctly', () => {
+it('renders app correctly', async () => {
   renderer.create(
     <ApolloProvider client={client}>
       <App />
