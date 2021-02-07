@@ -26,6 +26,9 @@ class ChartView: UIView, ChartViewDelegate {
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.addSubview(pieChartView)
+    
+    // disable value in pie slice
+    pieChartDataSet.drawValuesEnabled = false
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -34,6 +37,7 @@ class ChartView: UIView, ChartViewDelegate {
   
   func setChartDataSet() {
     pieChartView.data =  PieChartData(dataSet: pieChartDataSet)
+    
   }
   
   @objc var data:NSArray = [] {
