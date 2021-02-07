@@ -5,7 +5,7 @@ import {ApolloProvider} from '@apollo/client';
 import client from '@services/apollo';
 import Home from './index';
 
-it('renders Home correctly', () => {
+it('renders Home correctly', async () => {
   renderer.create(
     <ApolloProvider client={client}>
       <Home />

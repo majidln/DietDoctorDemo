@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Animated} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
-import {RootStackParamList} from '@navigation';
-import {Container} from '@atomic-components';
+import {RootStackParamList} from '@navigation/index';
+import {Container} from '@atomic-components/index';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
 import InstructionList from '@common-components/Instruction/list';
 import Nutrition from '@common-components/Nutrition';
-
+import {useRoute} from '@react-navigation/native';
 import {IMAGE_URL} from '@services/constants';
 
 const {height} = Dimensions.get('window');
@@ -15,11 +15,10 @@ const IMAGE_HEIGHT = (2 * height) / 3;
 
 type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
 
-export interface Props {
-  route: DetailScreenRouteProp;
-}
+interface Props {}
 
-const Detail: React.FC<Props> = ({route}) => {
+const Detail: React.FC<Props> = () => {
+  const route: DetailScreenRouteProp = useRoute();
   const {recipe} = route.params;
   const scrollY = React.useRef(new Animated.Value(0)).current;
 

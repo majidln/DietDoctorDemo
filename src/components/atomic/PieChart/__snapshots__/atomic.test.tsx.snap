@@ -23,5 +23,6 @@ exports[`PieChart Snapshot renders correctly 1`] = `
       "flex": 1,
     }
   }
+  testID="pieChart"
 />
 `;
