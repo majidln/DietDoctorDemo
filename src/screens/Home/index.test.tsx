@@ -6,6 +6,7 @@ import client from '@services/apollo';
 import Home from './index';
 
 it('renders Home correctly', async () => {
+  jest.useFakeTimers();
   renderer.create(
     <ApolloProvider client={client}>
       <Home />

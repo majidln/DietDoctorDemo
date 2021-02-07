@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1612739410484" clover="3.2.0">
-  <project timestamp="1612739410484" name="All files">
+<coverage generated="1612739821136" clover="3.2.0">
+  <project timestamp="1612739821137" name="All files">
     <metrics statements="130" coveredstatements="108" conditionals="52" coveredconditionals="33" methods="46" coveredmethods="28" elements="228" coveredelements="169" complexity="0" loc="130" ncloc="130" packages="17" files="24" classes="24"/>
     <package name="assets.locales">
       <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
