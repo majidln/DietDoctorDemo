@@ -15,6 +15,7 @@ class ChartView: UIView, ChartViewDelegate {
     let chartView = PieChartView()
     chartView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     chartView.drawHoleEnabled = false;
+    chartView.legend.enabled = false;
     chartView.delegate = self
     return chartView
   }()
@@ -71,25 +72,20 @@ class ChartView: UIView, ChartViewDelegate {
       }
       pieChartDataSet.colors = convertedColors
       setChartDataSet()
-      
-//       setChart(values: data as! [Double])
-     }
+    }
    }
   
   @objc var selectedIndex:NSNumber? {
     didSet {
       // set public data set
-      print("selectedIndex", selectedIndex)
-      let index = selectedIndex as! Int
-      pieChartView.highlightValue(Highlight(x: data[index] as! Double, dataSetIndex: index, stackIndex: 1))
+      pieChartView.highlightValue(x: selectedIndex as! Double, dataSetIndex: 0, dataIndex: 0)
+      pieChartDataSet.notifyDataSetChanged()
     }
   }
   
   
   @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-    if highlight.x != nil {
-      onSelectedItem!(["selectedIndex": Int(highlight.x)])
-    }
+    onSelectedItem!(["selectedIndex": Int(highlight.x)])
   }
   
 }
