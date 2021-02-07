@@ -9,102 +9,87 @@
 import UIKit
 import Charts
 
-class ChartView: UIView {
+class ChartView: UIView, ChartViewDelegate {
   
-  lazy var lineChartView: PieChartView = {
+  lazy var pieChartView: PieChartView = {
     let chartView = PieChartView()
     chartView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-    
+    chartView.drawHoleEnabled = false;
+    chartView.legend.enabled = false;
+    chartView.delegate = self
     return chartView
   }()
   
+  var pieChartDataSet:PieChartDataSet = PieChartDataSet(entries: [], label: "");
+  @objc var onSelectedItem: RCTDirectEventBlock?
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.addSubview(lineChartView)
-    //      setData()
+    self.addSubview(pieChartView)
+    
+    // disable value in pie slice
+    pieChartDataSet.drawValuesEnabled = false
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setData(yValues: [ChartDataEntry]) {
-    let set1 = LineChartDataSet(entries: yValues, label: "yValues")
-    let data = LineChartData(dataSet: set1)
+  func setChartDataSet() {
+    pieChartView.data =  PieChartData(dataSet: pieChartDataSet)
     
-    lineChartView.data = data
-  }
-  
-  func setChart(values: [Double]) {
-    lineChartView.noDataText = "you need to provide data for chart"
-    
-    var dataEntries: [ChartDataEntry] = []
-    //pieChart.centerText = " "
-    for i in 0..<values.count {
-      let dataEntry = ChartDataEntry(x: values[i], y: Double(i))
-      dataEntries.append(dataEntry)
-    }
-    
-    let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: "")
-    var colors: [UIColor] = []
-    for _ in 0..<values.count {
-      let red = Double(arc4random_uniform(256))
-      let green = Double(arc4random_uniform(256))
-      let blue = Double(arc4random_uniform(256))
-      
-      let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255), alpha: 1)
-      colors.append(color)
-      pieChartDataSet.colors = colors
-    }
-    
-    let pieChartData = PieChartData(dataSet: pieChartDataSet)
-    
-    lineChartView.data = pieChartData
-    //              pieChartData.animate(yAxisDuration: 2.0, easingOption: .EaseInOutBack)
   }
   
   @objc var data:NSArray = [] {
     didSet {
-      let data2 = [25.0,37.5,12.5,12.5,12.5] // pie chart data
-      let status3 = ["A","B","C","D","E"] // status
-      print(data)
-      setChart(values: data as! [Double])
+      // set public data set
+      for i in 0..<data.count {
+        let dataEntry = PieChartDataEntry(value: data[i] as! Double)
+        pieChartDataSet.append(dataEntry)
+      }
+      setChartDataSet()
     }
   }
   
-  //  @objc var count:Double = 0 {
-  //    didSet {
-  //
-  //      let yValues: [ChartDataEntry] = [
-  //        ChartDataEntry(x: count, y : 10.0),
-  //        ChartDataEntry(x: 5.0, y : 12.0),
-  //        ChartDataEntry(x: 7.0, y : 14.0),
-  //        ChartDataEntry(x: 8.0, y : 15.0)
-  //      ]
-  //
-  //      setData(yValues: yValues)
-  //    }
-  //  }
-  //  override init(frame: CGRect) {
-  //    super.init(frame: frame)
-  //    self.addSubview(button)
-  //    increment()
-  //  }
-  //  required init?(coder aDecoder: NSCoder) {
-  //    fatalError("init(coder:) has not been implemented")
-  //  }
-  //  lazy var button: UIButton = {
-  //    let b = UIButton.init(type: UIButton.ButtonType.system)
-  //    b.titleLabel?.font = UIFont.systemFont(ofSize: 50)
-  //    b.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-  //    b.addTarget(
-  //      self,
-  //      action: #selector(increment),
-  //      for: .touchUpInside
-  //    )
-  //    return b
-  //  }()
-  //  @objc func increment() {
-  //    count = count.intValue + 1 as NSNumber
-  //  }
+  @objc var colors:NSArray = [] {
+     didSet {
+        print(colors)
+      var convertedColors: [UIColor] = []
+      for i in 0..<colors.count {
+        let hexString = colors[i] as! String
+        let scanner = Scanner(string: hexString )
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        
+        let chartColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
+        convertedColors.append(chartColor)
+      }
+      pieChartDataSet.colors = convertedColors
+      setChartDataSet()
+    }
+   }
+  
+  @objc var selectedIndex:NSNumber? {
+    didSet {
+      // set public data set
+      pieChartView.highlightValue(x: selectedIndex as! Double, dataSetIndex: 0, dataIndex: 0)
+      pieChartDataSet.notifyDataSetChanged()
+    }
+  }
+  
+  
+  @objc public func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+    onSelectedItem!(["selectedIndex": Int(highlight.x)])
+  }
+  
 }

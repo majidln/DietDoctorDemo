@@ -1,6 +1,14 @@
+export interface Ingredient {
+  carbs?: Number;
+  fat?: Number;
+  protein?: Number;
+  fiber?: Number;
+  calories?: Number;
+}
+
 export interface Nutrition {
-  values: Object;
-  percentages: Object;
+  values: Ingredient;
+  percentages: Ingredient;
 }
 
 export interface Tag {
@@ -39,13 +47,18 @@ export interface Recipe {
 }
 
 export interface RecipePage {
-  listRecipes: Array<Recipe>;
+  recipes: Array<Recipe>;
   totalSize: Number;
   nextPage: Number;
 }
 
+export interface RecipeResponse {
+  listRecipes: RecipePage;
+}
+
 export interface QueryResponse {
-  data: RecipePage;
+  data: RecipeResponse;
   loading: Boolean;
+  error: Object;
   fetchMore: Function;
 }

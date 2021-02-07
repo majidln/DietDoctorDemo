@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Animated} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '@navigation';
+import {Container} from '@atomic-components';
 import {Rating} from 'react-native-ratings';
 import TagList from '@common-components/Tag/list';
 import InstructionList from '@common-components/Instruction/list';
@@ -46,9 +47,10 @@ const Detail: React.FC<Props> = ({route}) => {
   };
 
   return (
-    <View style={styles.wrapper}>
+    <Container testID="detailView" style={styles.wrapper}>
       <View>{renderImage()}</View>
       <Animated.ScrollView
+        testID="detailScroll"
         style={styles.scrollWrapper}
         onScroll={Animated.event(
           [
@@ -82,11 +84,14 @@ const Detail: React.FC<Props> = ({route}) => {
           </View>
           <Text style={styles.description}>{recipe.description}</Text>
           <TagList style={styles.tags} tags={recipe.tags} color="#000" />
-          <Nutrition nutrition={recipe.nutrition} />
+          <Nutrition
+            values={recipe.nutrition.values}
+            percentages={recipe.nutrition.percentages}
+          />
           <InstructionList instructions={recipe?.instructionSections} />
         </View>
       </Animated.ScrollView>
-    </View>
+    </Container>
   );
 };
 

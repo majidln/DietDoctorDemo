@@ -1,16 +1,28 @@
 const getLocales = () => [
   // you can choose / add the locales you want
   {
-    countryCode: 'US', languageTag: 'en-US', languageCode: 'en', isRTL: false,
+    countryCode: 'US',
+    languageTag: 'en-US',
+    languageCode: 'en',
+    isRTL: false,
   },
   {
-    countryCode: 'FR', languageTag: 'fr-FR', languageCode: 'fr', isRTL: false,
+    countryCode: 'FR',
+    languageTag: 'fr-FR',
+    languageCode: 'fr',
+    isRTL: false,
   },
   {
-    countryCode: 'IR', languageTag: 'fa-IR', languageCode: 'fa', isRTL: true,
+    countryCode: 'IR',
+    languageTag: 'fa-IR',
+    languageCode: 'fa',
+    isRTL: true,
   },
   {
-    countryCode: 'AF', languageTag: 'fa-AF', languageCode: 'fa', isRTL: true,
+    countryCode: 'AF',
+    languageTag: 'fa-AF',
+    languageCode: 'fa',
+    isRTL: true,
   },
 ];
 

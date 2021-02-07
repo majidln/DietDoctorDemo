@@ -1,11 +1,41 @@
 import React from 'react';
-import {requireNativeComponent} from 'react-native';
-const ChartView = requireNativeComponent('ChartView');
+import {requireNativeComponent, Platform, StyleSheet} from 'react-native';
 
-export interface Props {
+const RNChartView = requireNativeComponent(
+  Platform.OS === 'ios' ? 'ChartView' : 'ChartView',
+);
+
+interface Props {
   data: Array<Number>;
+  colors: Array<String>;
+  selectedIndex: Number;
+  onSelect: Function;
 }
 
-export const PieChart: React.FC<Props> = ({data, ...rest}: any) => {
-  return <ChartView data={data} {...rest} />;
+export const PieChart: React.FC<Props> = ({
+  data = [],
+  colors = [],
+  selectedIndex = 0,
+  onSelect,
+  ...rest
+}: any) => {
+  return (
+    <RNChartView
+      testID="pieChart"
+      style={styles.wrapper}
+      data={data}
+      colors={colors}
+      onSelectedItem={(event: any) => {
+        onSelect(event.nativeEvent.selectedIndex);
+      }}
+      selectedIndex={selectedIndex}
+      {...rest}
+    />
+  );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+});

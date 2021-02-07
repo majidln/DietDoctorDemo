@@ -12,10 +12,13 @@ export interface Props {
 const TagList: React.FC<Props> = ({tags, color, ...rest}: any) => {
   return (
     <FlatList
+      testID="tagList"
       {...rest}
       data={tags}
       keyExtractor={(item) => item.id}
-      renderItem={({item}) => <TagItem color={color} tag={item} />}
+      renderItem={({item, index}) => (
+        <TagItem testID={'tagListItem-' + index} color={color} tag={item} />
+      )}
       horizontal
       showsHorizontalScrollIndicator={false}
     />

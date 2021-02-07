@@ -8,4 +8,20 @@ export default {
   list: {
     pageTitle: 'Recipes',
   },
+  detail: {
+    mass: '{{value}}g',
+    percent: '{{value}}%',
+  },
+  instruction: {
+    itemTitle: 'Instruction {{number}}',
+  },
+  nutrition: {
+    title: 'Nutrition',
+  },
+  components: {
+    section: {
+      showDetail: 'Show Detail',
+      hideDetail: 'Hide Detail',
+    },
+  },
 };

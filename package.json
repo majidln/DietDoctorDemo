@@ -6,9 +6,13 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest --coverage",
+    "test": "jest --coverage --silent=false",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "detox:build:android": "detox build -c android",
+    "detox:test:android": "detox test -c android",
+    "detox:build:ios": "detox build -c ios",
+    "detox:test:ios": "detox test -c ios"
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
@@ -31,15 +35,19 @@
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@testing-library/react-native": "^7.1.0",
     "@types/jest": "^25.2.3",
     "@types/react-native": "^0.63.2",
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^25.1.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "detox": "^18.2.2",
     "eslint": "^6.5.1",
     "eslint-import-resolver-babel-module": "^5.2.0",
+    "eslint-plugin-detox": "^1.0.0",
     "eslint-plugin-import": "^2.22.1",
     "jest": "^25.1.0",
+    "jest-circus": "^26.6.3",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
@@ -56,10 +64,12 @@
     ],
     "setupFiles": [
       "./node_modules/react-native/jest/setup.js",
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./jestSetup.js"
     ],
     "moduleNameMapper": {
       "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"
-    }
+    },
+    "testRunner": "jest-circus/runner"
   }
 }

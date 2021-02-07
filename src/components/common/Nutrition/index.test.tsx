@@ -25,10 +25,17 @@ it('Nutrition Item render correctly', () => {
     <NutritionItem
       nutrition={Object.entries(nutrition.values)}
       percentages={nutrition.percentages}
+      onSelect={() => {}}
+      selected={'carbs'}
     />,
   );
 });
 
 it('Nutrition List render correctly', () => {
-  renderer.create(<NutritionList nutrition={nutrition} />);
+  renderer.create(
+    <NutritionList
+      values={nutrition.values}
+      percentages={nutrition.percentages}
+    />,
+  );
 });

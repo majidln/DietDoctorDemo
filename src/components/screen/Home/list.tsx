@@ -5,19 +5,26 @@ import {Recipe} from '@services/interfaces';
 
 interface Props {
   recipes: Array<Recipe>;
-  onSelect?: Function;
+  onPress?: Function;
+  [x: string]: any;
 }
 
-const HomeList: React.FC<Props> = ({recipes, onSelect, ...rest}: any) => {
+const HomeList: React.FC<Props> = ({recipes, onPress, ...rest}: any) => {
   return (
-    <View {...rest}>
+    <View>
       <FlatList
+        {...rest}
+        testID="homeListRecipes"
         style={styles.listWrapper}
         data={recipes}
         keyExtractor={(item) => item.id}
         horizontal
-        renderItem={({item}) => (
-          <Item recipe={item} onSelect={() => onSelect(item)} />
+        renderItem={({item, index}) => (
+          <Item
+            testID={'homeListRecipesItem-' + index}
+            recipe={item}
+            onPress={() => onPress(item)}
+          />
         )}
       />
     </View>

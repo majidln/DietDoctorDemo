@@ -1,37 +1,41 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {Container} from '@atomic-components';
+import {Container} from '@atomic-components/index';
 import HomeList from '@screen-components/Home/list';
-import {Recipe} from '@services/interfaces';
+import {Recipe, RecipeResponse} from '@services/interfaces';
 import t from '@services/translate';
-import {useGetRecipes} from '@src/hooks/useGetRecipes';
+import {useGetRecipes} from '@hooks/useGetRecipes';
 
 export interface Props {}
 
 const Home: React.FC<Props> = ({navigation}: any) => {
-  const {data} = useGetRecipes({
+  const {data}: {data: RecipeResponse} = useGetRecipes({
     page: 1,
-    pageSize: 10,
+    pageSize: 5,
     tagFilters: [],
     premiumOnly: false,
     includePremiumPreview: false,
   });
-
   return (
-    <Container style={styles.wrapper}>
-      {data && data.listRecipes && data.listRecipes.recipes ? (
+    <Container testID="homeView">
+      {data?.listRecipes?.recipes ? (
         <View>
           <View style={styles.listToolbar}>
-            <Text style={styles.title}>{t.t('home.new')}</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('List')}>
+            <Text testID="newLabel" style={styles.title}>
+              {t.t('home.new')}
+            </Text>
+            <TouchableOpacity
+              testID="viewAllBtn"
+              onPress={() => navigation.navigate('List')}>
               <Text style={styles.viewAllText}>{t.t('home.viewAll')}</Text>
             </TouchableOpacity>
           </View>
           <HomeList
             recipes={data.listRecipes.recipes}
-            onSelect={(recipe: Recipe) =>
-              navigation.navigate('Detail', {recipe})
-            }
+            onPress={(recipe: Recipe) => {
+              console.log('on press home');
+              navigation.navigate('Detail', {recipe});
+            }}
           />
         </View>
       ) : null}
@@ -42,9 +46,6 @@ const Home: React.FC<Props> = ({navigation}: any) => {
 export default Home;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
   listToolbar: {
     justifyContent: 'space-between',
     flexDirection: 'row',

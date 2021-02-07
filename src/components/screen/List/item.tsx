@@ -7,19 +7,16 @@ import {IMAGE_URL} from '@services/constants';
 
 export interface Props {
   recipe: Recipe;
-  onSelect: Function;
+  [x: string]: any;
 }
 
-const HomeListItem: React.FC<Props> = ({recipe, onSelect}) => {
+const HomeListItem: React.FC<Props> = ({recipe, ...rest}) => {
   const image =
     recipe.images && recipe.images.hz
       ? {uri: IMAGE_URL + recipe.images.hz}
       : require('@assets/images/recipe-default-image.png');
   return (
-    <TouchableHighlight
-      style={styles.wrapper}
-      onPress={() => onSelect()}
-      underlayColor={'#fff'}>
+    <TouchableHighlight {...rest} style={styles.wrapper} underlayColor={'#fff'}>
       <View>
         <Image style={styles.image} source={image} resizeMode={'cover'} />
         <Text style={styles.title}>{recipe.title}</Text>
@@ -45,17 +42,19 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     overflow: 'hidden',
     backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
     marginVertical: 8,
     justifyContent: 'space-between',
     paddingBottom: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.32,
+    shadowRadius: 5.46,
+    borderWidth: 1,
+    borderColor: 'lightgray',
+    elevation: 9,
   },
   image: {
     width: '100%',
