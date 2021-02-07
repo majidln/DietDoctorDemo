@@ -99,7 +99,7 @@ const GET_RECIPES_LIST = gql`
   }
 `;
 
-export const useGetRecipes = (variables: Object): QueryResponse | undefined => {
+export const useGetRecipes = (variables: Object): QueryResponse => {
   const query = useQuery(GET_RECIPES_LIST, {
     variables,
   });

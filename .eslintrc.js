@@ -27,6 +27,7 @@ module.exports = {
         "@screens": "./src/screens",
         "@navigation": "./src/navigation",
         "@services": "./src/services",
+        "@hooks": "./src/hooks",
         "@atomic-components": "./src/components/atomic",
         "@common-components": "./src/components/common",
         "@screen-components": "./src/components/screen",

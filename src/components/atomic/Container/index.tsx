@@ -2,12 +2,13 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
 export interface Props {
-  style?: Object;
+  children: any;
+  [x: string]: any;
 }
 
-export const Container: React.FC<Props> = ({children, style, ...rest}: any) => {
+export const Container: React.FC<Props> = ({children, ...rest}: any) => {
   return (
-    <SafeAreaView style={{...styles.wrapper, ...style}} {...rest}>
+    <SafeAreaView {...rest} style={{...styles.wrapper, ...rest.style}}>
       {children}
     </SafeAreaView>
   );
@@ -16,5 +17,6 @@ export const Container: React.FC<Props> = ({children, style, ...rest}: any) => {
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#fff',
+    flex: 1,
   },
 });

@@ -47,13 +47,18 @@ export interface Recipe {
 }
 
 export interface RecipePage {
-  listRecipes: Array<Recipe>;
+  recipes: Array<Recipe>;
   totalSize: Number;
   nextPage: Number;
 }
 
+export interface RecipeResponse {
+  listRecipes: RecipePage;
+}
+
 export interface QueryResponse {
-  data: RecipePage;
+  data: RecipeResponse;
   loading: Boolean;
+  error: Object;
   fetchMore: Function;
 }

@@ -32,7 +32,9 @@ const InstructionList: React.FC<Props> = ({instructions}) => {
           <View key={index}>
             {instructions.length > 1 ? (
               <Text style={{...styles.title, backgroundColor: colors.primary}}>
-                {t.t('instruction.itemTitle', {number: index + 1})}
+                {instruction.title
+                  ? instruction.title
+                  : t.t('instruction.itemTitle', {number: index + 1})}
               </Text>
             ) : null}
             {renderInstructionList(instruction)}

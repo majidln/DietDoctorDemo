@@ -1,19 +1,24 @@
 import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {Container} from '@atomic-components';
+import {Container} from '@atomic-components/index';
 import ListItem from '@screen-components/List/item';
-import {useGetRecipes} from '@src/hooks/useGetRecipes';
+import {useGetRecipes} from '@hooks/useGetRecipes';
+import {RecipeResponse} from '@services/interfaces';
 
 const List: React.FC = () => {
   const navigation = useNavigation();
-  const {data, fetchMore} = useGetRecipes({
+  const {
+    data,
+    fetchMore,
+  }: {data: RecipeResponse; fetchMore: Function} = useGetRecipes({
     page: 1,
     pageSize: 10,
     tagFilters: [],
     premiumOnly: false,
     includePremiumPreview: false,
   });
+  console.log('data in list', data, navigation);
 
   const fetchData = () => {
     fetchMore({
@@ -34,8 +39,8 @@ const List: React.FC = () => {
         onEndReachedThreshold={1}
         renderItem={({item, index}) => (
           <ListItem
-            testID={index}
-            onSelect={() => navigation.navigate('Detail', {recipe: item})}
+            testID={'listItem-' + index}
+            onPress={() => navigation.navigate('Detail', {recipe: item})}
             recipe={item}
           />
         )}
@@ -45,9 +50,7 @@ const List: React.FC = () => {
 
   return (
     <Container testID="listView" style={styles.wrapper}>
-      {data && data.listRecipes && data.listRecipes.recipes
-        ? renderList()
-        : null}
+      {data?.listRecipes?.recipes ? renderList() : null}
     </Container>
   );
 };

@@ -3,9 +3,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useTheme} from '@react-navigation/native';
 import t from '@services/translate';
 import HomeScreen from '@screens/Home';
-import ListScreen from './../screens/List';
-import DetailScreen from './../screens/Detail';
-
+import ListScreen from '@screens/List';
+import DetailScreen from '@screens/Detail';
 import {Recipe} from '@services/interfaces';
 
 export type RootStackParamList = {
