@@ -20,7 +20,7 @@ const Home: React.FC<Props> = ({navigation}: any) => {
   return (
     <Container testID="homeView" style={styles.wrapper}>
       <PieChart
-        style={{width: '100%', height: 400}}
+        style={{width: '100%', height: 400, backgroundColor: 'gray'}}
         data={[20, 50, 30]}
         colors={['#ff0000', '#00ff00', '#0000ff']}
       />

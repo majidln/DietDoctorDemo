@@ -34,13 +34,14 @@ import java.util.List;
 import java.util.Map;
 
 public class PiChartManager extends SimpleViewManager<PieChart> {
-    public static final String REACT_CLASS = "PiChartView";
+    public static final String REACT_CLASS = "ChartView";
     PieDataSet dataSet;
 
     public PiChartManager(ReactApplicationContext reactContext) {
         mCallerContext = reactContext;
         dataSet = new PieDataSet( new ArrayList(), "");
-
+        dataSet.setDrawValues(false);
+        dataSet.setHighlightEnabled(true);
     }
 
     ReactApplicationContext mCallerContext;
@@ -50,46 +51,49 @@ public class PiChartManager extends SimpleViewManager<PieChart> {
         return REACT_CLASS;
     }
 
-    public Map getExportedCustomBubblingEventTypeConstants() {
-        return MapBuilder.builder()
-            .put(
-                "topChange",
-                MapBuilder.of(
-                    "phasedRegistrationNames",
-                    MapBuilder.of("bubbled", "onChange")))
-                    .build();
+    @Override
+    public @Nullable Map getExportedCustomDirectEventTypeConstants() {
+        return MapBuilder.of(
+                "onSelectedItem",
+                MapBuilder.of("registrationName", "onSelectedItem")
+        );
     }
 
     @NonNull
     @Override
     protected PieChart createViewInstance(@NonNull ThemedReactContext reactContext) {
         PieChart chart = new PieChart(reactContext);
+        // fill pie chart hole
         chart.setDrawHoleEnabled(false);
+        // remove colors guide
+        chart.getLegend().setEnabled(false);
+        // disable description
+        chart.getDescription().setEnabled(false);
+        // set callback for pie entry selected
         chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
                 if (e == null)
                     return;
-//                Toast.makeText(reactContext, "Value: " + e.getY() + ", index: " + h.getX() + ", DataSet index: " + h.getDataSetIndex(), Toast.LENGTH_LONG).show();
                 WritableMap event = Arguments.createMap();
                 event.putInt("selectedIndex", (int) h.getX());
                 reactContext.getJSModule(RCTEventEmitter.class).receiveEvent(
-                    chart.getId(),
-                    "topChange",
-                    event);
+                        chart.getId(),
+                        "onSelectedItem",
+                        event
+                );
             }
 
             @Override
-            public void onNothingSelected() {
-
-            }
+            public void onNothingSelected() {}
         });
         return chart;
     }
 
     @ReactProp(name = "selectedIndex")
     public void setSelectedIndex(PieChart pieChart, @Nullable Integer selectedIndex) {
-        // TODO highlight selected item in chart
+        pieChart.highlightValue(selectedIndex, 0, false);
+        pieChart.invalidate();
     }
 
     @ReactProp(name = "data")
@@ -121,5 +125,6 @@ public class PiChartManager extends SimpleViewManager<PieChart> {
     private void setChartDataSet(PieChart pieChart) {
         PieData pieData = new PieData(dataSet);
         pieChart.setData(pieData);
+        pieChart.invalidate();
     }
 }

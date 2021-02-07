@@ -1,8 +1,14 @@
 import React from 'react';
-import {requireNativeComponent, Platform} from 'react-native';
+import {
+  requireNativeComponent,
+  Platform,
+  View,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 
-const ChartView2 = requireNativeComponent(
-  Platform.OS === 'ios' ? 'ChartView' : 'PiChartView',
+const RNChartView = requireNativeComponent(
+  Platform.OS === 'ios' ? 'ChartView' : 'ChartView',
 );
 
 export interface Props {
@@ -11,15 +17,24 @@ export interface Props {
 }
 
 export const PieChart: React.FC<Props> = ({data, colors, ...rest}: any) => {
+  const [index, setIndex] = React.useState(0);
   return (
-    <ChartView2
-      data={data}
-      colors={colors}
-      onSelectedItem={(event) =>
-        console.log('onSelectIndex', event.nativeEvent.selectedIndex)
-      }
-      selectedIndex={1}
-      {...rest}
-    />
+    <View>
+      <RNChartView
+        data={data}
+        colors={colors}
+        onSelectedItem={(event) =>
+          console.log(
+            'onSelectIndex',
+            setIndex(event.nativeEvent.selectedIndex),
+          )
+        }
+        selectedIndex={index}
+        {...rest}
+      />
+      <TouchableOpacity onPress={() => setIndex(index + 1)}>
+        <Text>Incccc</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
