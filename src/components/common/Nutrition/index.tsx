@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {PieChart} from '@atomic-components/index';
-import {Section} from '@atomic-components';
+import {Section} from '@atomic-components/index';
 import NutritionItem from './item';
 import {Ingredient} from '@services/interfaces';
 import t from '@services/translate';

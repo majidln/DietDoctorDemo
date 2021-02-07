@@ -5,7 +5,7 @@ const RNChartView = requireNativeComponent(
   Platform.OS === 'ios' ? 'ChartView' : 'ChartView',
 );
 
-export interface Props {
+interface Props {
   data: Array<Number>;
   colors: Array<String>;
   selectedIndex: Number;

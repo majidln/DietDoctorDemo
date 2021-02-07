@@ -33,8 +33,8 @@ const Home: React.FC<Props> = ({navigation}: any) => {
           <HomeList
             recipes={data.listRecipes.recipes}
             onPress={(recipe: Recipe) => {
-              console.log('on press home')
-              navigation.navigate('Detail', {recipe})
+              console.log('on press home');
+              navigation.navigate('Detail', {recipe});
             }}
           />
         </View>

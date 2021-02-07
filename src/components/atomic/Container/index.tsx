@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
-export interface Props {
+interface Props {
   children: any;
   [x: string]: any;
 }

@@ -64,7 +64,7 @@
     "setupFiles": [
       "./node_modules/react-native/jest/setup.js",
       "./node_modules/react-native-gesture-handler/jestSetup.js",
-      "./jestSetup.ts"
+      "./jestSetup.js"
     ],
     "moduleNameMapper": {
       "\\.(png)$": "<rootDir>/__mocks__/fileMock.js"
