@@ -53,7 +53,7 @@ yarn detox:build:ios #build android debug.apk
 yarn start
 yarn detox:test:ios #run e2e test in emulator
 ```
-> Detox needs to get network images so it starts running, be patient to start running 
+> Detox needs to get network images after that it starts running.
 
 
 ### Screenshots
