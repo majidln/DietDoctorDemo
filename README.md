@@ -1,8 +1,8 @@
 ## Diet Doctor React Native sample app
-This writes in React Native. I tried to used the best practices in React Native such concern separation, component and e2e testing. 
-Unfortunately I didn't know about your response data types so I created Typescripts interfaces with all types I saw in your responses.
+This writes in React Native. I tried to used the best practices in React Native such concern separation in (logic and component) and e2e testing. 
 This application writes in React Native. It has a native module for Pie-Chart view to show nutrition percentages. For the IOS Pie-Chart, I used [this](https://github.com/danielgindi/Charts) repo and for Android Pie-Chart I used [this](https://github.com/PhilJay/MPAndroidChart/commit/f6a398b) repository. I created a Javascript Wrapper for this library Pie-Chart to use its functionality in React-Native. On the React Native side, I created a PieChart component to wrap that native view manager.
 
+> Unfortunately I didn't know about your response data types so I created Typescripts interfaces with all types I saw in your responses.
 
 ### Features
 
